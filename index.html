@@ -3,8 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>FermoLog - Brew Tracker | Official Website</title>
-    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <title>Fermolog - Professional Fermentation Tracking</title>
     <style>
         * {
             margin: 0;
@@ -13,161 +12,156 @@
         }
 
         body {
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            background: linear-gradient(-45deg, #667eea, #764ba2, #8d1525, #f5576c);
-            background-size: 400% 400%;
-            animation: gradientBG 15s ease infinite;
-            min-height: 100vh;
-            color: white;
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+            line-height: 1.6;
+            color: #f8f8f8;
+            background: linear-gradient(135deg, #2d1b1b 0%, #4a1e2b 25%, #6b2737 50%, #8b2635 75%, #a52a2a 100%);
             overflow-x: hidden;
         }
 
-        @keyframes gradientBG {
-            0% { background-position: 0% 50%; }
-            50% { background-position: 100% 50%; }
-            100% { background-position: 0% 50%; }
+        /* Hero Section */
+        .hero {
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            position: relative;
+            background: 
+                radial-gradient(circle at 20% 20%, rgba(165, 42, 42, 0.3) 0%, transparent 50%),
+                radial-gradient(circle at 80% 80%, rgba(139, 38, 53, 0.3) 0%, transparent 50%),
+                linear-gradient(135deg, #2d1b1b 0%, #4a1e2b 25%, #6b2737 50%, #8b2635 75%, #a52a2a 100%);
         }
 
-        .floating-elements {
-            position: fixed;
+        .hero::before {
+            content: '';
+            position: absolute;
             top: 0;
             left: 0;
-            width: 100%;
-            height: 100%;
+            right: 0;
+            bottom: 0;
+            background: 
+                repeating-linear-gradient(
+                    90deg,
+                    transparent,
+                    transparent 98px,
+                    rgba(255, 255, 255, 0.03) 100px
+                ),
+                repeating-linear-gradient(
+                    0deg,
+                    transparent,
+                    transparent 98px,
+                    rgba(255, 255, 255, 0.03) 100px
+                );
             pointer-events: none;
+        }
+
+        .hero-content {
+            max-width: 1200px;
+            padding: 0 2rem;
+            position: relative;
             z-index: 1;
         }
 
-        .floating-elements::before,
-        .floating-elements::after {
-            content: '';
-            position: absolute;
-            width: 200px;
-            height: 200px;
-            background: rgba(255, 255, 255, 0.1);
-            border-radius: 50%;
-            animation: float 20s infinite linear;
-        }
-
-        .floating-elements::before {
-            top: -100px;
-            left: -100px;
-            animation-delay: 0s;
-        }
-
-        .floating-elements::after {
-            bottom: -100px;
-            right: -100px;
-            animation-delay: 10s;
-        }
-
-        @keyframes float {
-            0% { transform: translateY(0px) rotate(0deg); }
-            50% { transform: translateY(-100px) rotate(180deg); }
-            100% { transform: translateY(0px) rotate(360deg); }
-        }
-
-        .navbar {
-            position: fixed;
-            top: 0;
-            width: 100%;
-            background: rgba(255, 255, 255, 0.1);
-            backdrop-filter: blur(20px);
-            padding: 15px 0;
-            z-index: 1000;
-            transition: all 0.3s ease;
-        }
-
-        .nav-content {
-            max-width: 1200px;
-            margin: 0 auto;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            padding: 0 20px;
-        }
-
         .logo {
-            font-size: 1.8rem;
-            font-weight: bold;
-            background: linear-gradient(45deg, #ffd700, #ff6b6b);
+            font-size: 4rem;
+            font-weight: 800;
+            background: linear-gradient(45deg, #ff6b6b, #ff8e8e, #ffb3b3);
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
             background-clip: text;
+            margin-bottom: 1rem;
+            text-shadow: 0 0 30px rgba(255, 107, 107, 0.5);
+            animation: glow 2s ease-in-out infinite alternate;
         }
 
-        .nav-links {
+        @keyframes glow {
+            from { filter: drop-shadow(0 0 20px rgba(255, 107, 107, 0.5)); }
+            to { filter: drop-shadow(0 0 30px rgba(255, 107, 107, 0.8)); }
+        }
+
+        .tagline {
+            font-size: 1.8rem;
+            margin-bottom: 2rem;
+            color: #ffcccb;
+            font-weight: 300;
+            letter-spacing: 1px;
+        }
+
+        .hero-description {
+            font-size: 1.2rem;
+            margin-bottom: 3rem;
+            color: #e0e0e0;
+            max-width: 800px;
+            margin-left: auto;
+            margin-right: auto;
+            line-height: 1.8;
+        }
+
+        .download-buttons {
             display: flex;
-            gap: 30px;
+            gap: 1.5rem;
+            justify-content: center;
+            flex-wrap: wrap;
+            margin-bottom: 3rem;
         }
 
-        .nav-links a {
+        .download-btn {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            padding: 16px 32px;
+            background: linear-gradient(135deg, #8b2635 0%, #a52a2a 100%);
             color: white;
             text-decoration: none;
+            border-radius: 16px;
+            font-weight: 600;
+            font-size: 1.1rem;
             transition: all 0.3s ease;
-            position: relative;
+            box-shadow: 0 8px 32px rgba(139, 38, 53, 0.4);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
         }
 
-        .nav-links a:hover {
+        .download-btn:hover {
             transform: translateY(-2px);
+            box-shadow: 0 12px 48px rgba(139, 38, 53, 0.6);
+            background: linear-gradient(135deg, #a52a2a 0%, #b83141 100%);
         }
 
-        .nav-links a::after {
-            content: '';
-            position: absolute;
-            bottom: -5px;
-            left: 0;
-            width: 0;
-            height: 2px;
-            background: #ffd700;
-            transition: width 0.3s ease;
+        .download-btn svg {
+            width: 24px;
+            height: 24px;
         }
 
-        .nav-links a:hover::after {
-            width: 100%;
+        /* Features Section */
+        .features {
+            padding: 100px 2rem;
+            background: linear-gradient(180deg, rgba(45, 27, 27, 0.9) 0%, rgba(74, 30, 43, 0.9) 100%);
+            backdrop-filter: blur(20px);
         }
 
         .container {
             max-width: 1200px;
             margin: 0 auto;
-            padding: 120px 20px 50px;
-            position: relative;
-            z-index: 10;
         }
 
-        .hero-section {
+        .section-title {
             text-align: center;
-            margin-bottom: 80px;
-        }
-
-        .hero-title {
-            font-size: 4rem;
-            font-weight: 300;
-            margin-bottom: 20px;
-            background: linear-gradient(45deg, #ffd700, #ff6b6b, #4ecdc4);
+            font-size: 3rem;
+            margin-bottom: 1rem;
+            background: linear-gradient(45deg, #ff6b6b, #ff8e8e);
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
             background-clip: text;
-            animation: titleGlow 3s ease-in-out infinite alternate;
+            font-weight: 700;
         }
 
-        @keyframes titleGlow {
-            from { text-shadow: 0 0 20px rgba(255, 215, 0, 0.5); }
-            to { text-shadow: 0 0 40px rgba(255, 107, 107, 0.5); }
-        }
-
-        .hero-subtitle {
-            font-size: 1.5rem;
-            margin-bottom: 30px;
-            opacity: 0.9;
-            font-weight: 300;
-        }
-
-        .hero-description {
-            font-size: 1.1rem;
-            line-height: 1.6;
-            margin-bottom: 50px;
-            opacity: 0.8;
+        .section-subtitle {
+            text-align: center;
+            font-size: 1.3rem;
+            color: #c0c0c0;
+            margin-bottom: 4rem;
             max-width: 600px;
             margin-left: auto;
             margin-right: auto;
@@ -175,18 +169,17 @@
 
         .features-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 30px;
-            margin: 60px 0;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 2rem;
+            margin-bottom: 4rem;
         }
 
         .feature-card {
-            background: rgba(255, 255, 255, 0.1);
-            backdrop-filter: blur(20px);
-            border: 1px solid rgba(255, 255, 255, 0.2);
+            background: linear-gradient(135deg, rgba(139, 38, 53, 0.2) 0%, rgba(165, 42, 42, 0.2) 100%);
+            padding: 2.5rem;
             border-radius: 20px;
-            padding: 40px 30px;
-            text-align: center;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
             transition: all 0.3s ease;
             position: relative;
             overflow: hidden;
@@ -195,424 +188,353 @@
         .feature-card::before {
             content: '';
             position: absolute;
-            top: -2px;
-            left: -2px;
-            right: -2px;
-            bottom: -2px;
-            background: linear-gradient(45deg, #ffd700, #ff6b6b, #4ecdc4, #45b7d1);
-            border-radius: 22px;
-            z-index: -1;
-            opacity: 0;
-            transition: opacity 0.3s ease;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.1), transparent);
+            transition: left 0.5s ease;
         }
 
         .feature-card:hover::before {
-            opacity: 1;
+            left: 100%;
         }
 
         .feature-card:hover {
-            transform: translateY(-10px) scale(1.02);
-            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
+            transform: translateY(-5px);
+            box-shadow: 0 20px 40px rgba(139, 38, 53, 0.3);
+            border-color: rgba(255, 107, 107, 0.3);
         }
 
         .feature-icon {
-            font-size: 3rem;
-            margin-bottom: 20px;
-            background: linear-gradient(45deg, #ffd700, #ff6b6b);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+            display: block;
         }
 
         .feature-title {
-            font-size: 1.3rem;
-            margin-bottom: 15px;
+            font-size: 1.5rem;
             font-weight: 600;
+            margin-bottom: 1rem;
+            color: #ffcccb;
         }
 
         .feature-description {
-            opacity: 0.8;
-            line-height: 1.5;
+            color: #d0d0d0;
+            line-height: 1.7;
         }
 
-        .download-section {
-            text-align: center;
-            margin: 80px 0;
-            padding: 60px 40px;
-            background: rgba(255, 255, 255, 0.1);
-            backdrop-filter: blur(20px);
-            border-radius: 30px;
-            border: 1px solid rgba(255, 255, 255, 0.2);
+        /* Perfect For Section */
+        .perfect-for {
+            padding: 80px 2rem;
+            background: linear-gradient(180deg, rgba(74, 30, 43, 0.9) 0%, rgba(107, 39, 55, 0.9) 100%);
         }
 
-        .download-title {
-            font-size: 2.5rem;
-            margin-bottom: 20px;
-            background: linear-gradient(45deg, #ffd700, #ff6b6b);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
-        }
-
-        .download-subtitle {
-            font-size: 1.2rem;
-            margin-bottom: 40px;
-            opacity: 0.8;
-        }
-
-        .app-badges {
-            display: flex;
-            justify-content: center;
-            gap: 30px;
-            flex-wrap: wrap;
-        }
-
-        .app-badge {
-            transition: all 0.3s ease;
-            filter: drop-shadow(0 10px 20px rgba(0, 0, 0, 0.3));
-        }
-
-        .app-badge:hover {
-            transform: translateY(-5px) scale(1.05);
-            filter: drop-shadow(0 20px 40px rgba(0, 0, 0, 0.4));
-        }
-
-        .app-badge img {
-            width: 200px;
-            height: auto;
-            border-radius: 15px;
-        }
-
-        .stats-section {
+        .perfect-for-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-            gap: 30px;
-            margin: 60px 0;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+            text-align: center;
         }
 
-        .stat-item {
-            text-align: center;
-            padding: 30px;
-            background: rgba(255, 255, 255, 0.1);
-            backdrop-filter: blur(20px);
-            border-radius: 20px;
-            border: 1px solid rgba(255, 255, 255, 0.2);
+        .perfect-for-item {
+            background: linear-gradient(135deg, rgba(165, 42, 42, 0.3) 0%, rgba(139, 38, 53, 0.3) 100%);
+            padding: 2rem;
+            border-radius: 15px;
+            border: 1px solid rgba(255, 255, 255, 0.1);
             transition: all 0.3s ease;
         }
 
-        .stat-item:hover {
-            transform: translateY(-5px);
+        .perfect-for-item:hover {
+            transform: scale(1.05);
+            background: linear-gradient(135deg, rgba(165, 42, 42, 0.4) 0%, rgba(139, 38, 53, 0.4) 100%);
         }
 
-        .stat-number {
+        .perfect-for-item h3 {
+            color: #ff8e8e;
+            margin-bottom: 1rem;
+            font-size: 1.3rem;
+        }
+
+        /* CTA Section */
+        .cta {
+            padding: 100px 2rem;
+            text-align: center;
+            background: linear-gradient(135deg, #2d1b1b 0%, #8b2635 100%);
+            position: relative;
+        }
+
+        .cta::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: 
+                radial-gradient(circle at 30% 30%, rgba(255, 107, 107, 0.1) 0%, transparent 50%),
+                radial-gradient(circle at 70% 70%, rgba(165, 42, 42, 0.1) 0%, transparent 50%);
+            pointer-events: none;
+        }
+
+        .cta-content {
+            position: relative;
+            z-index: 1;
+        }
+
+        .cta h2 {
             font-size: 3rem;
-            font-weight: bold;
-            background: linear-gradient(45deg, #ffd700, #ff6b6b);
+            margin-bottom: 1rem;
+            background: linear-gradient(45deg, #ff6b6b, #ffb3b3);
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
             background-clip: text;
-            margin-bottom: 10px;
         }
 
-        .stat-label {
-            font-size: 1.1rem;
-            opacity: 0.8;
+        .cta p {
+            font-size: 1.4rem;
+            margin-bottom: 3rem;
+            color: #e0e0e0;
         }
 
-        .footer {
-            text-align: center;
-            padding: 60px 20px 30px;
-            border-top: 1px solid rgba(255, 255, 255, 0.2);
-            margin-top: 80px;
-        }
-
-        .social-links {
-            display: flex;
-            justify-content: center;
-            gap: 20px;
-            margin-bottom: 30px;
-        }
-
-        .social-link {
-            width: 50px;
-            height: 50px;
-            background: rgba(255, 255, 255, 0.1);
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            color: white;
-            text-decoration: none;
-            transition: all 0.3s ease;
-            backdrop-filter: blur(20px);
-        }
-
-        .social-link:hover {
-            background: rgba(255, 215, 0, 0.3);
-            transform: translateY(-3px) scale(1.1);
-        }
-
-        .copyright {
-            opacity: 0.6;
-            font-size: 0.9rem;
-        }
-
+        /* Responsive Design */
         @media (max-width: 768px) {
-            .hero-title {
-                font-size: 2.5rem;
+            .logo {
+                font-size: 3rem;
             }
-            
-            .nav-links {
-                display: none;
+
+            .tagline {
+                font-size: 1.4rem;
             }
-            
-            .features-grid {
-                grid-template-columns: 1fr;
+
+            .hero-description {
+                font-size: 1.1rem;
             }
-            
-            .app-badges {
+
+            .download-buttons {
                 flex-direction: column;
                 align-items: center;
             }
-            
-            .download-section {
-                padding: 40px 20px;
+
+            .download-btn {
+                width: 100%;
+                max-width: 300px;
+                justify-content: center;
+            }
+
+            .section-title {
+                font-size: 2.2rem;
+            }
+
+            .features-grid {
+                grid-template-columns: 1fr;
+                gap: 1.5rem;
+            }
+
+            .feature-card {
+                padding: 2rem;
+            }
+
+            .cta h2 {
+                font-size: 2.2rem;
             }
         }
 
-        .scroll-indicator {
-            position: fixed;
-            bottom: 30px;
-            left: 50%;
-            transform: translateX(-50%);
-            animation: bounce 2s infinite;
-            z-index: 1000;
+        /* Animations */
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
         }
 
-        @keyframes bounce {
-            0%, 20%, 50%, 80%, 100% {
-                transform: translateX(-50%) translateY(0);
-            }
-            40% {
-                transform: translateX(-50%) translateY(-10px);
-            }
-            60% {
-                transform: translateX(-50%) translateY(-5px);
-            }
+        .feature-card {
+            animation: fadeInUp 0.6s ease forwards;
+        }
+
+        .feature-card:nth-child(1) { animation-delay: 0.1s; }
+        .feature-card:nth-child(2) { animation-delay: 0.2s; }
+        .feature-card:nth-child(3) { animation-delay: 0.3s; }
+        .feature-card:nth-child(4) { animation-delay: 0.4s; }
+        .feature-card:nth-child(5) { animation-delay: 0.5s; }
+        .feature-card:nth-child(6) { animation-delay: 0.6s; }
+
+        /* Floating elements */
+        .floating-icon {
+            position: absolute;
+            font-size: 2rem;
+            color: rgba(255, 107, 107, 0.3);
+            animation: float 6s ease-in-out infinite;
+        }
+
+        @keyframes float {
+            0%, 100% { transform: translateY(0px); }
+            50% { transform: translateY(-20px); }
+        }
+
+        .floating-icon:nth-child(1) {
+            top: 20%;
+            left: 10%;
+            animation-delay: 0s;
+        }
+
+        .floating-icon:nth-child(2) {
+            top: 60%;
+            right: 10%;
+            animation-delay: 2s;
+        }
+
+        .floating-icon:nth-child(3) {
+            top: 40%;
+            left: 5%;
+            animation-delay: 4s;
         }
     </style>
 </head>
 <body>
-    <div class="floating-elements"></div>
-    
-    <nav class="navbar">
-        <div class="nav-content">
-            <div class="logo">🍺 FermoLog</div>
-            <div class="nav-links">
-                <a href="#features">Özellikler</a>
-                <a href="#download">İndir</a>
-                <a href="#contact">İletişim</a>
-            </div>
-        </div>
-    </nav>
+    <!-- Floating decorative elements -->
+    <div class="floating-icon">🍷</div>
+    <div class="floating-icon">🍯</div>
+    <div class="floating-icon">📊</div>
 
-    <div class="container">
-        <section class="hero-section">
-            <h1 class="hero-title">FermoLog</h1>
-            <p class="hero-subtitle">🍺 Brew Tracker Uygulaması</p>
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="hero-content">
+            <h1 class="logo">Fermolog</h1>
+            <p class="tagline">Track wine & mead fermentation like a pro!</p>
             <p class="hero-description">
-                Fermantasyon süreçlerinizi profesyonel bir şekilde takip edin. 
-                Bira, şarap ve diğer fermente içeceklerinizin her aşamasını kaydedin, 
-                analiz edin ve mükemmel sonuçlar elde edin.
-            </p>
-        </section>
-
-        <section class="stats-section">
-            <div class="stat-item">
-                <div class="stat-number">10K+</div>
-                <div class="stat-label">Aktif Kullanıcı</div>
-            </div>
-            <div class="stat-item">
-                <div class="stat-number">50K+</div>
-                <div class="stat-label">Takip Edilen Fermantasyon</div>
-            </div>
-            <div class="stat-item">
-                <div class="stat-number">4.8</div>
-                <div class="stat-label">⭐ App Store Puanı</div>
-            </div>
-            <div class="stat-item">
-                <div class="stat-number">100%</div>
-                <div class="stat-label">Ücretsiz</div>
-            </div>
-        </section>
-
-        <section id="features" class="features-grid">
-            <div class="feature-card">
-                <div class="feature-icon">📊</div>
-                <h3 class="feature-title">Detaylı Takip</h3>
-                <p class="feature-description">
-                    Fermantasyon sürecinizin her aşamasını gün gün takip edin. 
-                    Sıcaklık, yoğunluk ve diğer kritik parametreleri kaydedin.
-                </p>
-            </div>
-            
-            <div class="feature-card">
-                <div class="feature-icon">📱</div>
-                <h3 class="feature-title">Mobil Optimized</h3>
-                <p class="feature-description">
-                    iOS ve Android cihazlarınızda sorunsuz çalışan, 
-                    kullanıcı dostu arayüz ile her yerden erişim.
-                </p>
-            </div>
-            
-            <div class="feature-card">
-                <div class="feature-icon">🔔</div>
-                <h3 class="feature-title">Akıllı Hatırlatıcılar</h3>
-                <p class="feature-description">
-                    Önemli tarihleri kaçırmayın. Akıllı bildirimler ile 
-                    fermantasyon sürecinizin her adımında yanınızdayız.
-                </p>
-            </div>
-            
-            <div class="feature-card">
-                <div class="feature-icon">📈</div>
-                <h3 class="feature-title">Analiz & Raporlar</h3>
-                <p class="feature-description">
-                    Fermantasyon verilerinizi analiz edin, grafiklerde görselleştirin 
-                    ve gelecek projeleriniz için öngörüler elde edin.
-                </p>
-            </div>
-            
-            <div class="feature-card">
-                <div class="feature-icon">☁️</div>
-                <h3 class="feature-title">Bulut Senkronizasyonu</h3>
-                <p class="feature-description">
-                    Verileriniz güvenli şekilde bulutta saklanır. 
-                    Cihaz değiştirseniz bile verileriniz hep yanınızda.
-                </p>
-            </div>
-            
-            <div class="feature-card">
-                <div class="feature-icon">🏆</div>
-                <h3 class="feature-title">Başarım Sistemi</h3>
-                <p class="feature-description">
-                    Fermantasyon yolculuğunuzda başarımlar kazanın, 
-                    deneyim puanları toplayın ve seviye atlayın.
-                </p>
-            </div>
-        </section>
-
-        <section id="download" class="download-section">
-            <h2 class="download-title">Download Now!</h2>
-            <p class="download-subtitle">
-                Start your fermentation adventure today. Download for free and achieve professional results.
+                Smart OG/ABV calculator, timeline scheduling, and batch management. 
+                Perfect results every time! Take complete control of your fermentation process with the most comprehensive tracking app for home winemakers and mead producers.
             </p>
             
-            <div class="app-badges">
-                <a href="https://play.google.com/store/apps/details?id=com.eminbilgic.fermantation_logger" class="app-badge">
-                    <img src="https://play.google.com/intl/en_us/badges/static/images/badges/en_badge_web_generic.png" alt="Get it on Google Play">
+            <div class="download-buttons">
+                <a href="https://apps.apple.com/tr/app/fermolog-brew-tracker/id6745624694" class="download-btn">
+                    <svg viewBox="0 0 24 24" fill="currentColor">
+                        <path d="M18.71 19.5c-.83 1.24-1.71 2.45-3.05 2.47-1.34.03-1.77-.79-3.29-.79-1.53 0-2 .77-3.27.82-1.31.05-2.3-1.32-3.14-2.53C4.25 17 2.94 12.45 4.7 9.39c.87-1.52 2.43-2.48 4.12-2.51 1.28-.02 2.5.87 3.29.87.78 0 2.26-1.07 3.81-.91.65.03 2.47.26 3.64 1.98-.09.06-2.17 1.28-2.15 3.81.03 3.02 2.65 4.03 2.68 4.04-.03.07-.42 1.44-1.38 2.83M13 3.5c.73-.83 1.94-1.46 2.94-1.5.13 1.17-.34 2.35-1.04 3.19-.69.85-1.83 1.51-2.95 1.42-.15-1.15.41-2.35 1.05-3.11z"/>
+                    </svg>
+                    App Store
                 </a>
                 
-                <a href="https://apps.apple.com/tr/app/fermolog-brew-tracker/id6745624694" class="app-badge">
-                    <img src="https://developer.apple.com/assets/elements/badges/download-on-the-app-store.svg" alt="Download on the App Store">
+                <a href="https://play.google.com/store/apps/details?id=com.eminbilgic.fermantation_logger" class="download-btn">
+                    <svg viewBox="0 0 24 24" fill="currentColor">
+                        <path d="M3,20.5V3.5C3,2.91 3.34,2.39 3.84,2.15L13.69,12L3.84,21.85C3.34,21.6 3,21.09 3,20.5M16.81,15.12L6.05,21.34L14.54,12.85L16.81,15.12M20.16,10.81C20.5,11.08 20.75,11.5 20.75,12C20.75,12.5 20.53,12.9 20.18,13.18L17.89,14.5L15.39,12L17.89,9.5L20.16,10.81M6.05,2.66L16.81,8.88L14.54,11.15L6.05,2.66Z"/>
+                    </svg>
+                    Google Play
                 </a>
             </div>
-        </section>
-    </div>
-
-    <footer id="contact" class="footer">
-        <div class="social-links">
-            <a href="#" class="social-link">
-                <i class="fab fa-twitter"></i>
-            </a>
-            <a href="#" class="social-link">
-                <i class="fab fa-instagram"></i>
-            </a>
-            <a href="#" class="social-link">
-                <i class="fab fa-facebook"></i>
-            </a>
-            <a href="#" class="social-link">
-                <i class="fab fa-youtube"></i>
-            </a>
         </div>
-        
-        <p class="copyright">
-            © 2025 FermoLog - Fermentation Tracker. All rights reserved. 
-            <br>Crafted with passion for fermentation 🍷
-        </p>
-    </footer>
+    </section>
 
-    <div class="scroll-indicator">
-        <i class="fas fa-chevron-down" style="color: white; font-size: 1.2rem;"></i>
-    </div>
+    <!-- Features Section -->
+    <section class="features">
+        <div class="container">
+            <h2 class="section-title">Powerful Features</h2>
+            <p class="section-subtitle">Everything you need for professional fermentation tracking</p>
+            
+            <div class="features-grid">
+                <div class="feature-card">
+                    <span class="feature-icon">📊</span>
+                    <h3 class="feature-title">Advanced Batch Tracking</h3>
+                    <p class="feature-description">
+                        Specialized batch records for wine, mead, and grape wines with detailed tracking of every fermentation stage and professional timeline management.
+                    </p>
+                </div>
 
-    <script>
-        // Smooth scrolling for navigation links
-        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-            anchor.addEventListener('click', function (e) {
-                e.preventDefault();
-                const target = document.querySelector(this.getAttribute('href'));
-                if (target) {
-                    target.scrollIntoView({
-                        behavior: 'smooth',
-                        block: 'start'
-                    });
-                }
-            });
-        });
+                <div class="feature-card">
+                    <span class="feature-icon">📝</span>
+                    <h3 class="feature-title">Smart Recording System</h3>
+                    <p class="feature-description">
+                        Time-stamped notes and photo logging with visual documentation of your fermentation process and automatic date and time records.
+                    </p>
+                </div>
 
-        // Hide scroll indicator after scroll
-        window.addEventListener('scroll', function() {
-            const scrollIndicator = document.querySelector('.scroll-indicator');
-            if (window.scrollY > 100) {
-                scrollIndicator.style.opacity = '0';
-            } else {
-                scrollIndicator.style.opacity = '1';
-            }
-        });
+                <div class="feature-card">
+                    <span class="feature-icon">🔔</span>
+                    <h3 class="feature-title">Smart Alarms & Reminders</h3>
+                    <p class="feature-description">
+                        Customizable alarms for critical fermentation steps, next process reminders, and batch transition time notifications.
+                    </p>
+                </div>
 
-        // Navbar background change on scroll
-        window.addEventListener('scroll', function() {
-            const navbar = document.querySelector('.navbar');
-            if (window.scrollY > 50) {
-                navbar.style.background = 'rgba(255, 255, 255, 0.2)';
-            } else {
-                navbar.style.background = 'rgba(255, 255, 255, 0.1)';
-            }
-        });
+                <div class="feature-card">
+                    <span class="feature-icon">🧮</span>
+                    <h3 class="feature-title">Professional Calculations</h3>
+                    <p class="feature-description">
+                        Automatic OG/Brix value calculation with accurate measurements without hydrometer using content-based intelligent algorithms.
+                    </p>
+                </div>
 
-        // Add entrance animations
-        const observerOptions = {
-            threshold: 0.1,
-            rootMargin: '0px 0px -50px 0px'
-        };
+                <div class="feature-card">
+                    <span class="feature-icon">🍷</span>
+                    <h3 class="feature-title">ABV Calculation</h3>
+                    <p class="feature-description">
+                        Automatic ABV calculation from OG/Brix values, potential alcohol percentage estimation, and fermentation progress tracking.
+                    </p>
+                </div>
 
-        const observer = new IntersectionObserver((entries) => {
-            entries.forEach(entry => {
-                if (entry.isIntersecting) {
-                    entry.target.style.animation = 'fadeInUp 0.6s ease forwards';
-                }
-            });
-        }, observerOptions);
+                <div class="feature-card">
+                    <span class="feature-icon">📈</span>
+                    <h3 class="feature-title">Visual Analysis</h3>
+                    <p class="feature-description">
+                        Automatic graphical display of OG readings, visual fermentation process tracking, and alcohol development progression charts.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
 
-        // Observe all feature cards and stat items
-        document.querySelectorAll('.feature-card, .stat-item').forEach(el => {
-            el.style.opacity = '0';
-            el.style.transform = 'translateY(30px)';
-            observer.observe(el);
-        });
+    <!-- Perfect For Section -->
+    <section class="perfect-for">
+        <div class="container">
+            <h2 class="section-title">Perfect For</h2>
+            <div class="perfect-for-grid">
+                <div class="perfect-for-item">
+                    <h3>🏠 Home Winemakers</h3>
+                    <p>Create exceptional wines with professional tracking</p>
+                </div>
+                <div class="perfect-for-item">
+                    <h3>🍯 Mead Producers</h3>
+                    <p>Master the ancient art of mead making</p>
+                </div>
+                <div class="perfect-for-item">
+                    <h3>🧪 Fermentation Hobbyists</h3>
+                    <p>Explore and perfect your fermentation craft</p>
+                </div>
+                <div class="perfect-for-item">
+                    <h3>🏭 Small-Scale Producers</h3>
+                    <p>Scale your production with confidence</p>
+                </div>
+            </div>
+        </div>
+    </section>
 
-        // Add fadeInUp animation
-        const style = document.createElement('style');
-        style.textContent = `
-            @keyframes fadeInUp {
-                to {
-                    opacity: 1;
-                    transform: translateY(0);
-                }
-            }
-        `;
-        document.head.appendChild(style);
-    </script>
+    <!-- CTA Section -->
+    <section class="cta">
+        <div class="container">
+            <div class="cta-content">
+                <h2>Elevate Your Fermentation Craft</h2>
+                <p>Join thousands of winemakers and mead producers who trust Fermolog for perfect results</p>
+                <div class="download-buttons">
+                    <a href="https://apps.apple.com/tr/app/fermolog-brew-tracker/id6745624694" class="download-btn">
+                        <svg viewBox="0 0 24 24" fill="currentColor">
+                            <path d="M18.71 19.5c-.83 1.24-1.71 2.45-3.05 2.47-1.34.03-1.77-.79-3.29-.79-1.53 0-2 .77-3.27.82-1.31.05-2.3-1.32-3.14-2.53C4.25 17 2.94 12.45 4.7 9.39c.87-1.52 2.43-2.48 4.12-2.51 1.28-.02 2.5.87 3.29.87.78 0 2.26-1.07 3.81-.91.65.03 2.47.26 3.64 1.98-.09.06-2.17 1.28-2.15 3.81.03 3.02 2.65 4.03 2.68 4.04-.03.07-.42 1.44-1.38 2.83M13 3.5c.73-.83 1.94-1.46 2.94-1.5.13 1.17-.34 2.35-1.04 3.19-.69.85-1.83 1.51-2.95 1.42-.15-1.15.41-2.35 1.05-3.11z"/>
+                        </svg>
+                        Download for iOS
+                    </a>
+                    
+                    <a href="https://play.google.com/store/apps/details?id=com.eminbilgic.fermantation_logger" class="download-btn">
+                        <svg viewBox="0 0 24 24" fill="currentColor">
+                            <path d="M3,20.5V3.5C3,2.91 3.34,2.39 3.84,2.15L13.69,12L3.84,21.85C3.34,21.6 3,21.09 3,20.5M16.81,15.12L6.05,21.34L14.54,12.85L16.81,15.12M20.16,10.81C20.5,11.08 20.75,11.5 20.75,12C20.75,12.5 20.53,12.9 20.18,13.18L17.89,14.5L15.39,12L17.89,9.5L20.16,10.81M6.05,2.66L16.81,8.88L14.54,11.15L6.05,2.66Z"/>
+                        </svg>
+                        Download for Android
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
 </body>
 </html>
