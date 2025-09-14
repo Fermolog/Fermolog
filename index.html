@@ -1,973 +1,259 @@
 <!DOCTYPE html>
-<html lang="tr">
+<html lang="en">
 
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Fermolog - Professional Fermentation Tracking</title>
+    <title>Fermolog — Fermentation Tracker for Home Winemaking & Mead</title>
+    <meta name="description"
+        content="Track fermentation like a pro. Log batches, timelines, OG/Brix, ABV estimates, reminders, charts.">
+    <link rel="canonical" href="https://fermolog.github.io/">
+
+    <!-- Open Graph / Facebook -->
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://fermolog.github.io/">
+    <meta property="og:title" content="Fermolog — Fermentation Tracker for Home Winemaking & Mead">
+    <meta property="og:description"
+        content="Track fermentation like a pro. Log batches, timelines, OG/Brix, ABV estimates, reminders, charts.">
+    <meta property="og:image" content="https://fermolog.github.io/assets/img/IMG_0094.PNG">
+
+    <!-- Twitter -->
+    <meta property="twitter:card" content="summary_large_image">
+    <meta property="twitter:url" content="https://fermolog.github.io/">
+    <meta property="twitter:title" content="Fermolog — Fermentation Tracker for Home Winemaking & Mead">
+    <meta property="twitter:description"
+        content="Track fermentation like a pro. Log batches, timelines, OG/Brix, ABV estimates, reminders, charts.">
+    <meta property="twitter:image" content="https://fermolog.github.io/assets/img/IMG_0094.PNG">
 
     <!-- Favicon -->
-    <link rel="icon" type="image/png" href="assets/fermologo.png" style="border-radius: 50%;">
-    <link rel="shortcut icon" type="image/png" href="assets/fermologo.png" style="border-radius: 50%;">
-    <link rel="apple-touch-icon" href="assets/fermologo.png" style="border-radius: 50%;">
-    <style>
-        /* Circular favicon styling */
-        .circular-favicon {
-            width: 32px;
-            height: 32px;
-            border-radius: 50%;
-            overflow: hidden;
-            display: inline-block;
-            background: linear-gradient(135deg, #8b2635 0%, #a52a2a 100%);
-            padding: 4px;
-        }
-
-        .circular-favicon img {
-            width: 100%;
-            height: 100%;
-            border-radius: 50%;
-            object-fit: cover;
-        }
-
-        /* Circular logo styling */
-        .logo-container {
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            gap: 1.5rem;
-            margin-bottom: 1rem;
-        }
-
-        .logo {
-            font-size: 4rem;
-            font-weight: 800;
-            background: linear-gradient(45deg, #ff6b6b, #ff8e8e, #ffb3b3);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
-            text-shadow: 0 0 30px rgba(255, 107, 107, 0.5);
-            animation: glow 2s ease-in-out infinite alternate;
-            margin: 0;
-        }
-
-        .circular-logo {
-            width: 80px;
-            height: 80px;
-            border-radius: 50%;
-            overflow: hidden;
-            background: linear-gradient(135deg, rgba(255, 107, 107, 0.2) 0%, rgba(255, 142, 142, 0.2) 100%);
-            padding: 6px;
-            box-shadow: 0 8px 25px rgba(255, 107, 107, 0.3);
-            border: 2px solid rgba(255, 107, 107, 0.3);
-            animation: logoGlow 2s ease-in-out infinite alternate;
-            flex-shrink: 0;
-        }
-
-        .logo-image {
-            width: 100%;
-            height: 100%;
-            border-radius: 50%;
-            object-fit: cover;
-        }
-
-        @keyframes logoGlow {
-            from {
-                box-shadow: 0 10px 30px rgba(255, 107, 107, 0.3);
-            }
-
-            to {
-                box-shadow: 0 15px 40px rgba(255, 107, 107, 0.5);
-            }
-        }
-
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-
-        body {
-            font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
-            line-height: 1.6;
-            color: #f8f8f8;
-            background: linear-gradient(135deg, #2d1b1b 0%, #4a1e2b 25%, #6b2737 50%, #8b2635 75%, #a52a2a 100%);
-            overflow-x: hidden;
-        }
-
-        /* Hero Section */
-        .hero {
-            min-height: 100vh;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            text-align: center;
-            position: relative;
-            background:
-                radial-gradient(circle at 20% 20%, rgba(165, 42, 42, 0.3) 0%, transparent 50%),
-                radial-gradient(circle at 80% 80%, rgba(139, 38, 53, 0.3) 0%, transparent 50%),
-                linear-gradient(135deg, #2d1b1b 0%, #4a1e2b 25%, #6b2737 50%, #8b2635 75%, #a52a2a 100%);
-        }
-
-        .hero::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            right: 0;
-            bottom: 0;
-            background:
-                repeating-linear-gradient(90deg,
-                    transparent,
-                    transparent 98px,
-                    rgba(255, 255, 255, 0.03) 100px),
-                repeating-linear-gradient(0deg,
-                    transparent,
-                    transparent 98px,
-                    rgba(255, 255, 255, 0.03) 100px);
-            pointer-events: none;
-        }
-
-        .hero-content {
-            max-width: 100%;
-            padding: 0 1rem;
-            position: relative;
-            z-index: 1;
-        }
-
-        .logo {
-            font-size: 2.5rem;
-            font-weight: 800;
-            background: linear-gradient(45deg, #ff6b6b, #ff8e8e, #ffb3b3);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
-            margin-bottom: 1rem;
-            text-shadow: 0 0 30px rgba(255, 107, 107, 0.5);
-            animation: glow 2s ease-in-out infinite alternate;
-        }
-
-        @keyframes glow {
-            from {
-                filter: drop-shadow(0 0 20px rgba(255, 107, 107, 0.5));
-            }
-
-            to {
-                filter: drop-shadow(0 0 30px rgba(255, 107, 107, 0.8));
-            }
-        }
-
-        .tagline {
-            font-size: 1.2rem;
-            margin-bottom: 2rem;
-            color: #ffcccb;
-            font-weight: 300;
-            letter-spacing: 1px;
-        }
-
-        .hero-description {
-            font-size: 1rem;
-            margin: 1.5rem auto 0;
-            color: #e0e0e0;
-            max-width: 100%;
-            margin-left: auto;
-            margin-right: auto;
-            line-height: 1.6;
-            text-align: center;
-            word-wrap: break-word;
-            hyphens: auto;
-            padding: 0 0.5rem;
-        }
-
-        /* Screenshots Carousel */
-        .screenshots-carousel {
-            width: 100%;
-            max-width: 100%;
-            margin: 2rem auto 0;
-            overflow: hidden;
-            border-radius: 15px;
-            box-shadow: 0 15px 40px rgba(139, 38, 53, 0.3);
-            background: linear-gradient(135deg, rgba(139, 38, 53, 0.2) 0%, rgba(165, 42, 42, 0.2) 100%);
-            backdrop-filter: blur(10px);
-            border: 1px solid rgba(255, 255, 255, 0.1);
-        }
-
-        .screenshots-track {
-            display: flex;
-            animation: scroll 30s linear infinite;
-            width: calc(200% + 2rem);
-        }
-
-        .screenshots-carousel:hover .screenshots-track {
-            animation-play-state: paused;
-        }
-
-        .screenshot-slide {
-            flex: 0 0 auto;
-            width: 150px;
-            margin-right: 0.75rem;
-            border-radius: 12px;
-            overflow: hidden;
-            transition: transform 0.3s ease;
-        }
-
-        .screenshot-slide:hover {
-            transform: scale(1.05);
-        }
-
-        .screenshot-slide img {
-            width: 100%;
-            height: auto;
-            display: block;
-            border-radius: 15px;
-        }
-
-        @keyframes scroll {
-            0% {
-                transform: translateX(0);
-            }
-
-            100% {
-                transform: translateX(-50%);
-            }
-        }
-
-        .download-buttons {
-            display: flex;
-            gap: 1rem;
-            justify-content: center;
-            flex-wrap: wrap;
-            margin-bottom: 2rem;
-            flex-direction: column;
-            align-items: center;
-        }
-
-        .download-btn {
-            display: flex;
-            align-items: center;
-            gap: 10px;
-            padding: 14px 24px;
-            background: linear-gradient(135deg, #8b2635 0%, #a52a2a 100%);
-            color: white;
-            text-decoration: none;
-            border-radius: 12px;
-            font-weight: 600;
-            font-size: 1rem;
-            transition: all 0.3s ease;
-            box-shadow: 0 6px 24px rgba(139, 38, 53, 0.4);
-            border: 1px solid rgba(255, 255, 255, 0.1);
-            backdrop-filter: blur(10px);
-            width: 100%;
-            max-width: 280px;
-            justify-content: center;
-        }
-
-        .download-btn:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 12px 48px rgba(139, 38, 53, 0.6);
-            background: linear-gradient(135deg, #a52a2a 0%, #b83141 100%);
-        }
-
-        .download-btn svg {
-            width: 24px;
-            height: 24px;
-        }
-
-        /* Features Section */
-        .features {
-            padding: 60px 1rem;
-            background: linear-gradient(180deg, rgba(45, 27, 27, 0.9) 0%, rgba(74, 30, 43, 0.9) 100%);
-            backdrop-filter: blur(20px);
-        }
-
-        .container {
-            max-width: 100%;
-            margin: 0 auto;
-            padding: 0 0.5rem;
-        }
-
-        .section-title {
-            text-align: center;
-            font-size: 2rem;
-            margin-bottom: 1rem;
-            background: linear-gradient(45deg, #ff6b6b, #ff8e8e);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
-            font-weight: 700;
-        }
-
-        .section-subtitle {
-            text-align: center;
-            font-size: 1.1rem;
-            color: #c0c0c0;
-            margin-bottom: 2rem;
-            max-width: 100%;
-            margin-left: auto;
-            margin-right: auto;
-            padding: 0 0.5rem;
-        }
-
-        .features-grid {
-            display: grid;
-            grid-template-columns: 1fr;
-            gap: 1.5rem;
-            margin-bottom: 2rem;
-        }
-
-        .feature-card {
-            background: linear-gradient(135deg, rgba(139, 38, 53, 0.2) 0%, rgba(165, 42, 42, 0.2) 100%);
-            padding: 1.5rem;
-            border-radius: 15px;
-            border: 1px solid rgba(255, 255, 255, 0.1);
-            backdrop-filter: blur(10px);
-            transition: all 0.3s ease;
-            position: relative;
-            overflow: hidden;
-        }
-
-        .feature-card::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: -100%;
-            width: 100%;
-            height: 100%;
-            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.1), transparent);
-            transition: left 0.5s ease;
-        }
-
-        .feature-card:hover::before {
-            left: 100%;
-        }
-
-        .feature-card:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 20px 40px rgba(139, 38, 53, 0.3);
-            border-color: rgba(255, 107, 107, 0.3);
-        }
-
-        .feature-icon {
-            font-size: 2.5rem;
-            margin-bottom: 1rem;
-            display: block;
-        }
-
-        .feature-title {
-            font-size: 1.5rem;
-            font-weight: 600;
-            margin-bottom: 1rem;
-            color: #ffcccb;
-        }
-
-        .feature-description {
-            color: #d0d0d0;
-            line-height: 1.7;
-        }
-
-
-        /* Perfect For Section */
-        .perfect-for {
-            padding: 40px 1rem;
-            background: linear-gradient(180deg, rgba(74, 30, 43, 0.9) 0%, rgba(107, 39, 55, 0.9) 100%);
-        }
-
-        .perfect-for-grid {
-            display: grid;
-            grid-template-columns: 1fr;
-            gap: 1.5rem;
-            text-align: center;
-        }
-
-        .perfect-for-item {
-            background: linear-gradient(135deg, rgba(165, 42, 42, 0.3) 0%, rgba(139, 38, 53, 0.3) 100%);
-            padding: 1.5rem;
-            border-radius: 12px;
-            border: 1px solid rgba(255, 255, 255, 0.1);
-            transition: all 0.3s ease;
-        }
-
-        .perfect-for-item:hover {
-            transform: scale(1.05);
-            background: linear-gradient(135deg, rgba(165, 42, 42, 0.4) 0%, rgba(139, 38, 53, 0.4) 100%);
-        }
-
-        .perfect-for-item h3 {
-            color: #ff8e8e;
-            margin-bottom: 1rem;
-            font-size: 1.3rem;
-        }
-
-        /* CTA Section */
-        .cta {
-            padding: 60px 1rem;
-            text-align: center;
-            background: linear-gradient(135deg, #2d1b1b 0%, #8b2635 100%);
-            position: relative;
-        }
-
-        .cta::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            right: 0;
-            bottom: 0;
-            background:
-                radial-gradient(circle at 30% 30%, rgba(255, 107, 107, 0.1) 0%, transparent 50%),
-                radial-gradient(circle at 70% 70%, rgba(165, 42, 42, 0.1) 0%, transparent 50%);
-            pointer-events: none;
-        }
-
-        .cta-content {
-            position: relative;
-            z-index: 1;
-        }
-
-        .cta h2 {
-            font-size: 2rem;
-            margin-bottom: 1rem;
-            background: linear-gradient(45deg, #ff6b6b, #ffb3b3);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
-        }
-
-        .cta p {
-            font-size: 1.1rem;
-            margin-bottom: 2rem;
-            color: #e0e0e0;
-        }
-
-        /* Desktop Design */
-        @media (min-width: 769px) {
-            .hero-content {
-                max-width: 1200px;
-                padding: 0 2rem;
-            }
-
-            .logo {
-                font-size: 4rem;
-            }
-
-            .tagline {
-                font-size: 1.8rem;
-                margin-bottom: 3rem;
-            }
-
-            .hero-description {
-                font-size: 1.2rem;
-                margin: 2rem auto 0;
-                max-width: 800px;
-                padding: 0;
-            }
-
-            .screenshots-carousel {
-                max-width: 800px;
-                margin: 3rem auto 0;
-                border-radius: 20px;
-                box-shadow: 0 20px 60px rgba(139, 38, 53, 0.3);
-            }
-
-            .screenshot-slide {
-                width: 200px;
-                margin-right: 1rem;
-                border-radius: 15px;
-            }
-
-            .download-buttons {
-                flex-direction: row;
-                gap: 1.5rem;
-                margin-bottom: 3rem;
-            }
-
-            .download-btn {
-                width: auto;
-                max-width: none;
-                padding: 16px 32px;
-                font-size: 1.1rem;
-                border-radius: 16px;
-                box-shadow: 0 8px 32px rgba(139, 38, 53, 0.4);
-            }
-
-            .features {
-                padding: 100px 2rem;
-            }
-
-            .container {
-                max-width: 1200px;
-                padding: 0;
-            }
-
-            .section-title {
-                font-size: 3rem;
-            }
-
-            .section-subtitle {
-                font-size: 1.3rem;
-                margin-bottom: 4rem;
-                max-width: 600px;
-                padding: 0;
-            }
-
-            .features-grid {
-                grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
-                gap: 2rem;
-                margin-bottom: 4rem;
-            }
-
-            .feature-card {
-                padding: 2.5rem;
-                border-radius: 20px;
-            }
-
-            .perfect-for {
-                padding: 80px 2rem;
-            }
-
-            .perfect-for-grid {
-                grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-            }
-
-            .cta {
-                padding: 100px 2rem;
-            }
-
-            .cta h2 {
-                font-size: 3rem;
-            }
-
-            .cta p {
-                font-size: 1.4rem;
-                margin-bottom: 3rem;
-            }
-        }
-
-        /* Mobile Responsive Adjustments */
-        @media (max-width: 768px) {
-            .circular-logo {
-                width: 60px;
-                height: 60px;
-                padding: 4px;
-            }
-
-            .logo-container {
-                gap: 1rem;
-            }
-
-            .screenshots-carousel {
-                max-width: calc(100% - 2rem);
-            }
-
-            .screenshot-slide {
-                width: 120px;
-            }
-
-            .features {
-                padding: 40px 1rem;
-            }
-
-            .perfect-for {
-                padding: 40px 1rem;
-            }
-
-            .cta {
-                padding: 60px 1rem;
-            }
-        }
-
-        /* Extra small screens */
-        @media (max-width: 480px) {
-            .hero-content {
-                padding: 0 0.5rem;
-            }
-
-            .hero-description {
-                font-size: 0.9rem;
-                padding: 0 0.25rem;
-            }
-
-            .screenshots-carousel {
-                max-width: calc(100% - 1rem);
-            }
-
-            .screenshot-slide {
-                width: 100px;
-            }
-
-            .features {
-                padding: 30px 0.5rem;
-            }
-
-            .section-title {
-                font-size: 1.8rem;
-            }
-
-            .section-subtitle {
-                font-size: 1rem;
-            }
-
-            .feature-card {
-                padding: 1rem;
-            }
-
-            .perfect-for {
-                padding: 30px 0.5rem;
-            }
-
-            .perfect-for-item {
-                padding: 1rem;
-            }
-
-            .cta {
-                padding: 40px 0.5rem;
-            }
-
-            .cta h2 {
-                font-size: 1.8rem;
-            }
-
-            .cta p {
-                font-size: 1.1rem;
-            }
-        }
-
-        /* Very small screens */
-        @media (max-width: 360px) {
-            .hero-description {
-                font-size: 0.8rem;
-                padding: 0 0.25rem;
-            }
-
-            .tagline {
-                font-size: 1rem;
-            }
-
-            .section-title {
-                font-size: 1.5rem;
-            }
-
-            .section-subtitle {
-                font-size: 0.9rem;
-            }
-
-            .feature-card {
-                padding: 0.75rem;
-            }
-
-            .perfect-for-item {
-                padding: 0.75rem;
-            }
-
-            .screenshot-slide {
-                width: 80px;
-            }
-        }
-
-        /* Animations */
-        @keyframes fadeInUp {
-            from {
-                opacity: 0;
-                transform: translateY(30px);
-            }
-
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
-        }
-
-        .feature-card {
-            animation: fadeInUp 0.6s ease forwards;
-        }
-
-        .feature-card:nth-child(1) {
-            animation-delay: 0.1s;
-        }
-
-        .feature-card:nth-child(2) {
-            animation-delay: 0.2s;
-        }
-
-        .feature-card:nth-child(3) {
-            animation-delay: 0.3s;
-        }
-
-        .feature-card:nth-child(4) {
-            animation-delay: 0.4s;
-        }
-
-        .feature-card:nth-child(5) {
-            animation-delay: 0.5s;
-        }
-
-        .feature-card:nth-child(6) {
-            animation-delay: 0.6s;
-        }
-
-        .screenshot-item {
-            animation: fadeInUp 0.8s ease forwards;
-            opacity: 0;
-        }
-
-        .screenshot-item:nth-child(1) {
-            animation-delay: 0.1s;
-        }
-
-        .screenshot-item:nth-child(2) {
-            animation-delay: 0.2s;
-        }
-
-        .screenshot-item:nth-child(3) {
-            animation-delay: 0.3s;
-        }
-
-        .screenshot-item:nth-child(4) {
-            animation-delay: 0.4s;
-        }
-
-        .screenshot-item:nth-child(5) {
-            animation-delay: 0.5s;
-        }
-
-        .screenshot-item:nth-child(6) {
-            animation-delay: 0.6s;
-        }
-
-        /* Floating elements */
-        .floating-icon {
-            position: absolute;
-            font-size: 2rem;
-            color: rgba(255, 107, 107, 0.3);
-            animation: float 6s ease-in-out infinite;
-        }
-
-        @keyframes float {
-
-            0%,
-            100% {
-                transform: translateY(0px);
-            }
-
-            50% {
-                transform: translateY(-20px);
-            }
-        }
-
-        .floating-icon:nth-child(1) {
-            top: 20%;
-            left: 10%;
-            animation-delay: 0s;
-        }
-
-        .floating-icon:nth-child(2) {
-            top: 60%;
-            right: 10%;
-            animation-delay: 2s;
-        }
-
-        .floating-icon:nth-child(3) {
-            top: 40%;
-            left: 5%;
-            animation-delay: 4s;
-        }
-    </style>
+    <link rel="icon" type="image/png" href="./assets/fermologo.png">
+    <link rel="shortcut icon" type="image/png" href="./assets/fermologo.png">
+    <link rel="apple-touch-icon" href="./assets/fermologo.png">
+
+    <!-- Styles -->
+    <link rel="stylesheet" href="./assets/css/styles.css">
 </head>
 
 <body>
-    <!-- Floating decorative elements -->
-    <div class="floating-icon">🍷</div>
-    <div class="floating-icon">🍯</div>
-    <div class="floating-icon">📊</div>
+    <!-- Age Gate Modal -->
+    <div id="age-gate-modal" class="modal" role="dialog" aria-labelledby="age-gate-title" aria-modal="true">
+        <div class="modal-content">
+            <h2 id="age-gate-title">Age Confirmation</h2>
+            <p>Confirm you are of legal age to view fermentation content in your region.</p>
+            <div class="modal-buttons">
+                <button id="age-confirm" class="btn btn-primary">I'm of legal age</button>
+                <button id="age-leave" class="btn btn-secondary">Leave</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Header -->
+    <header class="header">
+        <div class="container">
+            <h1 class="logo">Fermolog</h1>
+        </div>
+    </header>
 
     <!-- Hero Section -->
     <section class="hero">
-        <div class="hero-content">
-            <div class="logo-container">
-                <div class="circular-logo">
-                    <img src="assets/fermologo.png" alt="Fermolog Logo" class="logo-image">
+        <div class="container">
+            <div class="hero-content">
+                <div class="hero-text">
+                    <h1 class="hero-title">Track Your Fermentation Like a Pro</h1>
+                    <p class="hero-subtitle">Log batches, plan timelines, see charts, and keep your notes in one simple
+                        app.</p>
+
+                    <!-- Device-aware convenience link -->
+                    <div class="convenience-link">
+                        <a href="#" id="auto-store-link" class="auto-store-link">Open in your store automatically</a>
+                    </div>
+
+                    <!-- Download buttons -->
+                    <div class="download-buttons">
+                        <a href="https://apps.apple.com/tr/app/fermolog-brew-tracker/id6745624694" class="download-btn"
+                            aria-label="Download on iOS">
+                            <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+                                <path
+                                    d="M18.71 19.5c-.83 1.24-1.71 2.45-3.05 2.47-1.34.03-1.77-.79-3.29-.79-1.53 0-2 .77-3.27.82-1.31.05-2.3-1.32-3.14-2.53C4.25 17 2.94 12.45 4.7 9.39c.87-1.52 2.43-2.48 4.12-2.51 1.28-.02 2.5.87 3.29.87.78 0 2.26-1.07 3.81-.91.65.03 2.47.26 3.64 1.98-.09.06-2.17 1.28-2.15 3.81.03 3.02 2.65 4.03 2.68 4.04-.03.07-.42 1.44-1.38 2.83M13 3.5c.73-.83 1.94-1.46 2.94-1.5.13 1.17-.34 2.35-1.04 3.19-.69.85-1.83 1.51-2.95 1.42-.15-1.15.41-2.35 1.05-3.11z" />
+                            </svg>
+                            Download on iOS
+                        </a>
+                        <a href="https://play.google.com/store/apps/details?id=com.eminbilgic.fermantation_logger"
+                            class="download-btn" aria-label="Get it on Android">
+                            <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+                                <path
+                                    d="M3,20.5V3.5C3,2.91 3.34,2.39 3.84,2.15L13.69,12L3.84,21.85C3.34,21.6 3,21.09 3,20.5M16.81,15.12L6.05,21.34L14.54,12.85L16.81,15.12M20.16,10.81C20.5,11.08 20.75,11.5 20.75,12C20.75,12.5 20.53,12.9 20.18,13.18L17.89,14.5L15.39,12L17.89,9.5L20.16,10.81M6.05,2.66L16.81,8.88L14.54,11.15L6.05,2.66Z" />
+                            </svg>
+                            Get it on Android
+                        </a>
+                    </div>
+
+                    <p class="trust-note">No personal data required. No ads. Simple tracking only.</p>
                 </div>
-                <h1 class="logo">Fermolog</h1>
+                <div class="hero-image">
+                    <img src="./assets/fermologo.png" alt="Fermolog logo" loading="eager">
+                </div>
             </div>
-            <p class="tagline">Track wine & mead fermentation like a pro!</p>
+        </div>
+    </section>
 
-            <div class="download-buttons">
-                <a href="https://apps.apple.com/tr/app/fermolog-brew-tracker/id6745624694" class="download-btn">
-                    <svg viewBox="0 0 24 24" fill="currentColor">
-                        <path
-                            d="M18.71 19.5c-.83 1.24-1.71 2.45-3.05 2.47-1.34.03-1.77-.79-3.29-.79-1.53 0-2 .77-3.27.82-1.31.05-2.3-1.32-3.14-2.53C4.25 17 2.94 12.45 4.7 9.39c.87-1.52 2.43-2.48 4.12-2.51 1.28-.02 2.5.87 3.29.87.78 0 2.26-1.07 3.81-.91.65.03 2.47.26 3.64 1.98-.09.06-2.17 1.28-2.15 3.81.03 3.02 2.65 4.03 2.68 4.04-.03.07-.42 1.44-1.38 2.83M13 3.5c.73-.83 1.94-1.46 2.94-1.5.13 1.17-.34 2.35-1.04 3.19-.69.85-1.83 1.51-2.95 1.42-.15-1.15.41-2.35 1.05-3.11z" />
-                    </svg>
-                    App Store
-                </a>
-
-                <a href="https://play.google.com/store/apps/details?id=com.eminbilgic.fermantation_logger"
-                    class="download-btn">
-                    <svg viewBox="0 0 24 24" fill="currentColor">
-                        <path
-                            d="M3,20.5V3.5C3,2.91 3.34,2.39 3.84,2.15L13.69,12L3.84,21.85C3.34,21.6 3,21.09 3,20.5M16.81,15.12L6.05,21.34L14.54,12.85L16.81,15.12M20.16,10.81C20.5,11.08 20.75,11.5 20.75,12C20.75,12.5 20.53,12.9 20.18,13.18L17.89,14.5L15.39,12L17.89,9.5L20.16,10.81M6.05,2.66L16.81,8.88L14.54,11.15L6.05,2.66Z" />
-                    </svg>
-                    Google Play
-                </a>
-            </div>
-
-            <!-- App Screenshots Carousel -->
+    <!-- Screenshots Carousel -->
+    <section class="screenshots-section">
+        <div class="container">
+            <h2 class="screenshots-title">See Fermolog in Action</h2>
             <div class="screenshots-carousel">
                 <div class="screenshots-track">
                     <div class="screenshot-slide">
-                        <img src="assets/img/IMG_0094.PNG" alt="Fermolog App Screenshot 1" loading="lazy">
+                        <img src="./assets/img/IMG_0094.PNG" alt="Fermolog app screenshot - Batch management"
+                            loading="lazy">
                     </div>
                     <div class="screenshot-slide">
-                        <img src="assets/img/IMG_0095.PNG" alt="Fermolog App Screenshot 2" loading="lazy">
+                        <img src="./assets/img/IMG_0095.PNG" alt="Fermolog app screenshot - Recording system"
+                            loading="lazy">
                     </div>
                     <div class="screenshot-slide">
-                        <img src="assets/img/IMG_0096.PNG" alt="Fermolog App Screenshot 3" loading="lazy">
+                        <img src="./assets/img/IMG_0096.PNG" alt="Fermolog app screenshot - Calculation tools"
+                            loading="lazy">
                     </div>
                     <div class="screenshot-slide">
-                        <img src="assets/img/IMG_0097.PNG" alt="Fermolog App Screenshot 4" loading="lazy">
+                        <img src="./assets/img/IMG_0097.PNG" alt="Fermolog app screenshot - ABV tracking"
+                            loading="lazy">
                     </div>
                     <div class="screenshot-slide">
-                        <img src="assets/img/IMG_0098.PNG" alt="Fermolog App Screenshot 5" loading="lazy">
+                        <img src="./assets/img/IMG_0098.PNG" alt="Fermolog app screenshot - Visual analysis"
+                            loading="lazy">
                     </div>
                     <div class="screenshot-slide">
-                        <img src="assets/img/IMG_0099.PNG" alt="Fermolog App Screenshot 6" loading="lazy">
+                        <img src="./assets/img/IMG_0099.PNG" alt="Fermolog app screenshot - Timeline planning"
+                            loading="lazy">
                     </div>
                     <!-- Duplicate for seamless loop -->
                     <div class="screenshot-slide">
-                        <img src="assets/img/IMG_0094.PNG" alt="Fermolog App Screenshot 1" loading="lazy">
+                        <img src="./assets/img/IMG_0094.PNG" alt="Fermolog app screenshot - Batch management"
+                            loading="lazy">
                     </div>
                     <div class="screenshot-slide">
-                        <img src="assets/img/IMG_0095.PNG" alt="Fermolog App Screenshot 2" loading="lazy">
+                        <img src="./assets/img/IMG_0095.PNG" alt="Fermolog app screenshot - Recording system"
+                            loading="lazy">
                     </div>
                     <div class="screenshot-slide">
-                        <img src="assets/img/IMG_0096.PNG" alt="Fermolog App Screenshot 3" loading="lazy">
+                        <img src="./assets/img/IMG_0096.PNG" alt="Fermolog app screenshot - Calculation tools"
+                            loading="lazy">
                     </div>
                 </div>
             </div>
+        </div>
+    </section>
 
-            <p class="hero-description">
-                Smart OG/ABV calculator, timeline scheduling, and batch management.<br>
-                Perfect results every time! Take complete control of your fermentation process<br>
-                with the most comprehensive tracking app for home winemakers and mead producers.
-            </p>
+    <!-- Social Proof Strip -->
+    <section class="social-proof">
+        <div class="container">
+            <p class="social-proof-text">Made for home winemakers, mead makers, and fermentation hobbyists.</p>
+            <div class="proof-items">
+                <div class="proof-item">
+                    <span class="proof-icon" aria-hidden="true">📊</span>
+                    <span>Batch Logs</span>
+                </div>
+                <div class="proof-item">
+                    <span class="proof-icon" aria-hidden="true">⏰</span>
+                    <span>Smart Schedules</span>
+                </div>
+                <div class="proof-item">
+                    <span class="proof-icon" aria-hidden="true">📈</span>
+                    <span>Clear Charts</span>
+                </div>
+            </div>
         </div>
     </section>
 
     <!-- Features Section -->
     <section class="features">
         <div class="container">
-            <h2 class="section-title">Powerful Features</h2>
-            <p class="section-subtitle">Everything you need for professional fermentation tracking</p>
-
+            <h2 class="section-title">What you can do with Fermolog</h2>
             <div class="features-grid">
                 <div class="feature-card">
-                    <span class="feature-icon">📊</span>
-                    <h3 class="feature-title">Advanced Batch Tracking</h3>
-                    <p class="feature-description">
-                        Specialized batch records for wine, mead, and grape wines with detailed tracking of every
-                        fermentation stage and professional timeline management.
-                    </p>
+                    <h3 class="feature-title">Comprehensive Batch Management</h3>
+                    <p class="feature-description">Specialized records for wine and mead. Detailed tracking for each
+                        stage. Timeline-based flow.</p>
                 </div>
-
                 <div class="feature-card">
-                    <span class="feature-icon">📝</span>
-                    <h3 class="feature-title">Smart Recording System</h3>
-                    <p class="feature-description">
-                        Time-stamped notes and photo logging with visual documentation of your fermentation process and
-                        automatic date and time records.
-                    </p>
+                    <h3 class="feature-title">Smart Recording & Documentation</h3>
+                    <p class="feature-description">Time-stamped notes, photos, automatic date logging.</p>
                 </div>
-
                 <div class="feature-card">
-                    <span class="feature-icon">🔔</span>
-                    <h3 class="feature-title">Smart Alarms & Reminders</h3>
-                    <p class="feature-description">
-                        Customizable alarms for critical fermentation steps, next process reminders, and batch
-                        transition time notifications.
-                    </p>
+                    <h3 class="feature-title">Professional Calculation Tools</h3>
+                    <p class="feature-description">Estimate OG/Brix from inputs; for accuracy use real measurements.</p>
                 </div>
-
                 <div class="feature-card">
-                    <span class="feature-icon">🧮</span>
-                    <h3 class="feature-title">Professional Calculations</h3>
-                    <p class="feature-description">
-                        Automatic OG/Brix value calculation with accurate measurements without hydrometer using
-                        content-based intelligent algorithms.
-                    </p>
+                    <h3 class="feature-title">ABV & Alcohol Tracking</h3>
+                    <p class="feature-description">Potential ABV estimates and progress overview.</p>
                 </div>
-
                 <div class="feature-card">
-                    <span class="feature-icon">🍷</span>
-                    <h3 class="feature-title">ABV Calculation</h3>
-                    <p class="feature-description">
-                        Automatic ABV calculation from OG/Brix values, potential alcohol percentage estimation, and
-                        fermentation progress tracking.
-                    </p>
+                    <h3 class="feature-title">Visual Analysis & Charts</h3>
+                    <p class="feature-description">OG/Brix and progress graphs.</p>
                 </div>
-
                 <div class="feature-card">
-                    <span class="feature-icon">📈</span>
-                    <h3 class="feature-title">Visual Analysis</h3>
-                    <p class="feature-description">
-                        Automatic graphical display of OG readings, visual fermentation process tracking, and alcohol
-                        development progression charts.
-                    </p>
+                    <h3 class="feature-title">Timeline Planning</h3>
+                    <p class="feature-description">Schedules, step-by-step guides, reminders.</p>
                 </div>
             </div>
         </div>
     </section>
 
-
-    <!-- Perfect For Section -->
-    <section class="perfect-for">
+    <!-- How It Works -->
+    <section class="how-it-works">
         <div class="container">
-            <h2 class="section-title">Perfect For</h2>
-            <div class="perfect-for-grid">
-                <div class="perfect-for-item">
-                    <h3>🏠 Home Winemakers</h3>
-                    <p>Create exceptional wines with professional tracking</p>
+            <h2 class="section-title">How It Works</h2>
+            <div class="steps-grid">
+                <div class="step">
+                    <div class="step-number">1</div>
+                    <h3 class="step-title">Create a batch and set your plan</h3>
                 </div>
-                <div class="perfect-for-item">
-                    <h3>🍯 Mead Producers</h3>
-                    <p>Master the ancient art of mead making</p>
+                <div class="step">
+                    <div class="step-number">2</div>
+                    <h3 class="step-title">Log readings and notes</h3>
                 </div>
-                <div class="perfect-for-item">
-                    <h3>🧪 Fermentation Hobbyists</h3>
-                    <p>Explore and perfect your fermentation craft</p>
-                </div>
-                <div class="perfect-for-item">
-                    <h3>🏭 Small-Scale Producers</h3>
-                    <p>Scale your production with confidence</p>
+                <div class="step">
+                    <div class="step-number">3</div>
+                    <h3 class="step-title">See progress and get reminders</h3>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- CTA Section -->
-    <section class="cta">
+    <!-- Privacy Callout -->
+    <section class="privacy-callout">
         <div class="container">
-            <div class="cta-content">
-                <h2>Elevate Your Fermentation Craft</h2>
-                <p>Join thousands of winemakers and mead producers who trust Fermolog for perfect results</p>
-                <div class="download-buttons">
-                    <a href="https://apps.apple.com/tr/app/fermolog-brew-tracker/id6745624694" class="download-btn">
-                        <svg viewBox="0 0 24 24" fill="currentColor">
-                            <path
-                                d="M18.71 19.5c-.83 1.24-1.71 2.45-3.05 2.47-1.34.03-1.77-.79-3.29-.79-1.53 0-2 .77-3.27.82-1.31.05-2.3-1.32-3.14-2.53C4.25 17 2.94 12.45 4.7 9.39c.87-1.52 2.43-2.48 4.12-2.51 1.28-.02 2.5.87 3.29.87.78 0 2.26-1.07 3.81-.91.65.03 2.47.26 3.64 1.98-.09.06-2.17 1.28-2.15 3.81.03 3.02 2.65 4.03 2.68 4.04-.03.07-.42 1.44-1.38 2.83M13 3.5c.73-.83 1.94-1.46 2.94-1.5.13 1.17-.34 2.35-1.04 3.19-.69.85-1.83 1.51-2.95 1.42-.15-1.15.41-2.35 1.05-3.11z" />
-                        </svg>
-                        Download for iOS
-                    </a>
-
-                    <a href="https://play.google.com/store/apps/details?id=com.eminbilgic.fermantation_logger"
-                        class="download-btn">
-                        <svg viewBox="0 0 24 24" fill="currentColor">
-                            <path
-                                d="M3,20.5V3.5C3,2.91 3.34,2.39 3.84,2.15L13.69,12L3.84,21.85C3.34,21.6 3,21.09 3,20.5M16.81,15.12L6.05,21.34L14.54,12.85L16.81,15.12M20.16,10.81C20.5,11.08 20.75,11.5 20.75,12C20.75,12.5 20.53,12.9 20.18,13.18L17.89,14.5L15.39,12L17.89,9.5L20.16,10.81M6.05,2.66L16.81,8.88L14.54,11.15L6.05,2.66Z" />
-                        </svg>
-                        Download for Android
-                    </a>
-                </div>
+            <div class="privacy-box">
+                <h3 class="privacy-title">Privacy first</h3>
+                <p class="privacy-text">Fermolog does not sell or share personal data. You can use it without creating
+                    an account. See our <a href="./privacy.html">Privacy Policy</a> for details.</p>
             </div>
         </div>
     </section>
+
+    <!-- Disclaimer -->
+    <section class="disclaimer">
+        <div class="container">
+            <p class="disclaimer-text">Fermolog is a tracking tool for educational/home fermentation. It does not
+                promote alcohol consumption or sales. Please follow your local laws.</p>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-links">
+                <a href="./privacy.html">Privacy Policy</a>
+                <a href="./terms.html">Terms of Service</a>
+                <a href="mailto:fermolog.help@outlook.com">Contact</a>
+            </div>
+            <p class="copyright">&copy; 2025 Fermolog. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <!-- Scripts -->
+    <script src="./assets/js/app.js"></script>
 </body>
 
 </html>
