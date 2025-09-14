@@ -128,14 +128,14 @@
         }
 
         .hero-content {
-            max-width: 1200px;
-            padding: 0 2rem;
+            max-width: 100%;
+            padding: 0 1rem;
             position: relative;
             z-index: 1;
         }
 
         .logo {
-            font-size: 4rem;
+            font-size: 2.5rem;
             font-weight: 800;
             background: linear-gradient(45deg, #ff6b6b, #ff8e8e, #ffb3b3);
             -webkit-background-clip: text;
@@ -157,32 +157,35 @@
         }
 
         .tagline {
-            font-size: 1.8rem;
-            margin-bottom: 3rem;
+            font-size: 1.2rem;
+            margin-bottom: 2rem;
             color: #ffcccb;
             font-weight: 300;
             letter-spacing: 1px;
         }
 
         .hero-description {
-            font-size: 1.2rem;
-            margin: 2rem auto 0;
+            font-size: 1rem;
+            margin: 1.5rem auto 0;
             color: #e0e0e0;
-            max-width: 800px;
+            max-width: 100%;
             margin-left: auto;
             margin-right: auto;
-            line-height: 1.8;
+            line-height: 1.6;
             text-align: center;
+            word-wrap: break-word;
+            hyphens: auto;
+            padding: 0 0.5rem;
         }
 
         /* Screenshots Carousel */
         .screenshots-carousel {
             width: 100%;
-            max-width: 800px;
-            margin: 3rem auto 0;
+            max-width: 100%;
+            margin: 2rem auto 0;
             overflow: hidden;
-            border-radius: 20px;
-            box-shadow: 0 20px 60px rgba(139, 38, 53, 0.3);
+            border-radius: 15px;
+            box-shadow: 0 15px 40px rgba(139, 38, 53, 0.3);
             background: linear-gradient(135deg, rgba(139, 38, 53, 0.2) 0%, rgba(165, 42, 42, 0.2) 100%);
             backdrop-filter: blur(10px);
             border: 1px solid rgba(255, 255, 255, 0.1);
@@ -200,9 +203,9 @@
 
         .screenshot-slide {
             flex: 0 0 auto;
-            width: 200px;
-            margin-right: 1rem;
-            border-radius: 15px;
+            width: 150px;
+            margin-right: 0.75rem;
+            border-radius: 12px;
             overflow: hidden;
             transition: transform 0.3s ease;
         }
@@ -230,27 +233,32 @@
 
         .download-buttons {
             display: flex;
-            gap: 1.5rem;
+            gap: 1rem;
             justify-content: center;
             flex-wrap: wrap;
-            margin-bottom: 3rem;
+            margin-bottom: 2rem;
+            flex-direction: column;
+            align-items: center;
         }
 
         .download-btn {
             display: flex;
             align-items: center;
-            gap: 12px;
-            padding: 16px 32px;
+            gap: 10px;
+            padding: 14px 24px;
             background: linear-gradient(135deg, #8b2635 0%, #a52a2a 100%);
             color: white;
             text-decoration: none;
-            border-radius: 16px;
+            border-radius: 12px;
             font-weight: 600;
-            font-size: 1.1rem;
+            font-size: 1rem;
             transition: all 0.3s ease;
-            box-shadow: 0 8px 32px rgba(139, 38, 53, 0.4);
+            box-shadow: 0 6px 24px rgba(139, 38, 53, 0.4);
             border: 1px solid rgba(255, 255, 255, 0.1);
             backdrop-filter: blur(10px);
+            width: 100%;
+            max-width: 280px;
+            justify-content: center;
         }
 
         .download-btn:hover {
@@ -266,19 +274,20 @@
 
         /* Features Section */
         .features {
-            padding: 100px 2rem;
+            padding: 60px 1rem;
             background: linear-gradient(180deg, rgba(45, 27, 27, 0.9) 0%, rgba(74, 30, 43, 0.9) 100%);
             backdrop-filter: blur(20px);
         }
 
         .container {
-            max-width: 1200px;
+            max-width: 100%;
             margin: 0 auto;
+            padding: 0 0.5rem;
         }
 
         .section-title {
             text-align: center;
-            font-size: 3rem;
+            font-size: 2rem;
             margin-bottom: 1rem;
             background: linear-gradient(45deg, #ff6b6b, #ff8e8e);
             -webkit-background-clip: text;
@@ -289,25 +298,26 @@
 
         .section-subtitle {
             text-align: center;
-            font-size: 1.3rem;
+            font-size: 1.1rem;
             color: #c0c0c0;
-            margin-bottom: 4rem;
-            max-width: 600px;
+            margin-bottom: 2rem;
+            max-width: 100%;
             margin-left: auto;
             margin-right: auto;
+            padding: 0 0.5rem;
         }
 
         .features-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
-            gap: 2rem;
-            margin-bottom: 4rem;
+            grid-template-columns: 1fr;
+            gap: 1.5rem;
+            margin-bottom: 2rem;
         }
 
         .feature-card {
             background: linear-gradient(135deg, rgba(139, 38, 53, 0.2) 0%, rgba(165, 42, 42, 0.2) 100%);
-            padding: 2.5rem;
-            border-radius: 20px;
+            padding: 1.5rem;
+            border-radius: 15px;
             border: 1px solid rgba(255, 255, 255, 0.1);
             backdrop-filter: blur(10px);
             transition: all 0.3s ease;
@@ -357,21 +367,21 @@
 
         /* Perfect For Section */
         .perfect-for {
-            padding: 80px 2rem;
+            padding: 40px 1rem;
             background: linear-gradient(180deg, rgba(74, 30, 43, 0.9) 0%, rgba(107, 39, 55, 0.9) 100%);
         }
 
         .perfect-for-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-            gap: 2rem;
+            grid-template-columns: 1fr;
+            gap: 1.5rem;
             text-align: center;
         }
 
         .perfect-for-item {
             background: linear-gradient(135deg, rgba(165, 42, 42, 0.3) 0%, rgba(139, 38, 53, 0.3) 100%);
-            padding: 2rem;
-            border-radius: 15px;
+            padding: 1.5rem;
+            border-radius: 12px;
             border: 1px solid rgba(255, 255, 255, 0.1);
             transition: all 0.3s ease;
         }
@@ -389,7 +399,7 @@
 
         /* CTA Section */
         .cta {
-            padding: 100px 2rem;
+            padding: 60px 1rem;
             text-align: center;
             background: linear-gradient(135deg, #2d1b1b 0%, #8b2635 100%);
             position: relative;
@@ -414,7 +424,7 @@
         }
 
         .cta h2 {
-            font-size: 3rem;
+            font-size: 2rem;
             margin-bottom: 1rem;
             background: linear-gradient(45deg, #ff6b6b, #ffb3b3);
             -webkit-background-clip: text;
@@ -423,17 +433,117 @@
         }
 
         .cta p {
-            font-size: 1.4rem;
-            margin-bottom: 3rem;
+            font-size: 1.1rem;
+            margin-bottom: 2rem;
             color: #e0e0e0;
         }
 
-        /* Responsive Design */
-        @media (max-width: 768px) {
+        /* Desktop Design */
+        @media (min-width: 769px) {
+            .hero-content {
+                max-width: 1200px;
+                padding: 0 2rem;
+            }
+
             .logo {
+                font-size: 4rem;
+            }
+
+            .tagline {
+                font-size: 1.8rem;
+                margin-bottom: 3rem;
+            }
+
+            .hero-description {
+                font-size: 1.2rem;
+                margin: 2rem auto 0;
+                max-width: 800px;
+                padding: 0;
+            }
+
+            .screenshots-carousel {
+                max-width: 800px;
+                margin: 3rem auto 0;
+                border-radius: 20px;
+                box-shadow: 0 20px 60px rgba(139, 38, 53, 0.3);
+            }
+
+            .screenshot-slide {
+                width: 200px;
+                margin-right: 1rem;
+                border-radius: 15px;
+            }
+
+            .download-buttons {
+                flex-direction: row;
+                gap: 1.5rem;
+                margin-bottom: 3rem;
+            }
+
+            .download-btn {
+                width: auto;
+                max-width: none;
+                padding: 16px 32px;
+                font-size: 1.1rem;
+                border-radius: 16px;
+                box-shadow: 0 8px 32px rgba(139, 38, 53, 0.4);
+            }
+
+            .features {
+                padding: 100px 2rem;
+            }
+
+            .container {
+                max-width: 1200px;
+                padding: 0;
+            }
+
+            .section-title {
                 font-size: 3rem;
             }
 
+            .section-subtitle {
+                font-size: 1.3rem;
+                margin-bottom: 4rem;
+                max-width: 600px;
+                padding: 0;
+            }
+
+            .features-grid {
+                grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+                gap: 2rem;
+                margin-bottom: 4rem;
+            }
+
+            .feature-card {
+                padding: 2.5rem;
+                border-radius: 20px;
+            }
+
+            .perfect-for {
+                padding: 80px 2rem;
+            }
+
+            .perfect-for-grid {
+                grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            }
+
+            .cta {
+                padding: 100px 2rem;
+            }
+
+            .cta h2 {
+                font-size: 3rem;
+            }
+
+            .cta p {
+                font-size: 1.4rem;
+                margin-bottom: 3rem;
+            }
+        }
+
+        /* Mobile Responsive Adjustments */
+        @media (max-width: 768px) {
             .circular-logo {
                 width: 60px;
                 height: 60px;
@@ -444,49 +554,112 @@
                 gap: 1rem;
             }
 
-            .tagline {
-                font-size: 1.4rem;
-            }
-
-            .hero-description {
-                font-size: 1.1rem;
-            }
-
-            .download-buttons {
-                flex-direction: column;
-                align-items: center;
-            }
-
-            .download-btn {
-                width: 100%;
-                max-width: 300px;
-                justify-content: center;
-            }
-
             .screenshots-carousel {
-                max-width: 100%;
-                margin: 2rem auto 0;
+                max-width: calc(100% - 2rem);
             }
 
             .screenshot-slide {
-                width: 150px;
+                width: 120px;
+            }
+
+            .features {
+                padding: 40px 1rem;
+            }
+
+            .perfect-for {
+                padding: 40px 1rem;
+            }
+
+            .cta {
+                padding: 60px 1rem;
+            }
+        }
+
+        /* Extra small screens */
+        @media (max-width: 480px) {
+            .hero-content {
+                padding: 0 0.5rem;
+            }
+
+            .hero-description {
+                font-size: 0.9rem;
+                padding: 0 0.25rem;
+            }
+
+            .screenshots-carousel {
+                max-width: calc(100% - 1rem);
+            }
+
+            .screenshot-slide {
+                width: 100px;
+            }
+
+            .features {
+                padding: 30px 0.5rem;
             }
 
             .section-title {
-                font-size: 2.2rem;
+                font-size: 1.8rem;
             }
 
-            .features-grid {
-                grid-template-columns: 1fr;
-                gap: 1.5rem;
+            .section-subtitle {
+                font-size: 1rem;
             }
 
             .feature-card {
-                padding: 2rem;
+                padding: 1rem;
+            }
+
+            .perfect-for {
+                padding: 30px 0.5rem;
+            }
+
+            .perfect-for-item {
+                padding: 1rem;
+            }
+
+            .cta {
+                padding: 40px 0.5rem;
             }
 
             .cta h2 {
-                font-size: 2.2rem;
+                font-size: 1.8rem;
+            }
+
+            .cta p {
+                font-size: 1.1rem;
+            }
+        }
+
+        /* Very small screens */
+        @media (max-width: 360px) {
+            .hero-description {
+                font-size: 0.8rem;
+                padding: 0 0.25rem;
+            }
+
+            .tagline {
+                font-size: 1rem;
+            }
+
+            .section-title {
+                font-size: 1.5rem;
+            }
+
+            .section-subtitle {
+                font-size: 0.9rem;
+            }
+
+            .feature-card {
+                padding: 0.75rem;
+            }
+
+            .perfect-for-item {
+                padding: 0.75rem;
+            }
+
+            .screenshot-slide {
+                width: 80px;
             }
         }
 
@@ -671,9 +844,9 @@
             </div>
 
             <p class="hero-description">
-                Smart OG/ABV calculator, timeline scheduling, and batch management.
-                Perfect results every time! Take complete control of your fermentation process with the most
-                comprehensive tracking app for home winemakers and mead producers.
+                Smart OG/ABV calculator, timeline scheduling, and batch management.<br>
+                Perfect results every time! Take complete control of your fermentation process<br>
+                with the most comprehensive tracking app for home winemakers and mead producers.
             </p>
         </div>
     </section>
