@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="tr">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -27,7 +28,7 @@
             justify-content: center;
             text-align: center;
             position: relative;
-            background: 
+            background:
                 radial-gradient(circle at 20% 20%, rgba(165, 42, 42, 0.3) 0%, transparent 50%),
                 radial-gradient(circle at 80% 80%, rgba(139, 38, 53, 0.3) 0%, transparent 50%),
                 linear-gradient(135deg, #2d1b1b 0%, #4a1e2b 25%, #6b2737 50%, #8b2635 75%, #a52a2a 100%);
@@ -40,19 +41,15 @@
             left: 0;
             right: 0;
             bottom: 0;
-            background: 
-                repeating-linear-gradient(
-                    90deg,
+            background:
+                repeating-linear-gradient(90deg,
                     transparent,
                     transparent 98px,
-                    rgba(255, 255, 255, 0.03) 100px
-                ),
-                repeating-linear-gradient(
-                    0deg,
+                    rgba(255, 255, 255, 0.03) 100px),
+                repeating-linear-gradient(0deg,
                     transparent,
                     transparent 98px,
-                    rgba(255, 255, 255, 0.03) 100px
-                );
+                    rgba(255, 255, 255, 0.03) 100px);
             pointer-events: none;
         }
 
@@ -76,8 +73,13 @@
         }
 
         @keyframes glow {
-            from { filter: drop-shadow(0 0 20px rgba(255, 107, 107, 0.5)); }
-            to { filter: drop-shadow(0 0 30px rgba(255, 107, 107, 0.8)); }
+            from {
+                filter: drop-shadow(0 0 20px rgba(255, 107, 107, 0.5));
+            }
+
+            to {
+                filter: drop-shadow(0 0 30px rgba(255, 107, 107, 0.8));
+            }
         }
 
         .tagline {
@@ -90,12 +92,65 @@
 
         .hero-description {
             font-size: 1.2rem;
-            margin-bottom: 3rem;
+            margin-bottom: 2rem;
             color: #e0e0e0;
             max-width: 800px;
             margin-left: auto;
             margin-right: auto;
             line-height: 1.8;
+        }
+
+        /* Screenshots Carousel */
+        .screenshots-carousel {
+            width: 100%;
+            max-width: 800px;
+            margin: 2rem auto 3rem;
+            overflow: hidden;
+            border-radius: 20px;
+            box-shadow: 0 20px 60px rgba(139, 38, 53, 0.3);
+            background: linear-gradient(135deg, rgba(139, 38, 53, 0.2) 0%, rgba(165, 42, 42, 0.2) 100%);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .screenshots-track {
+            display: flex;
+            animation: scroll 30s linear infinite;
+            width: calc(200% + 2rem);
+        }
+
+        .screenshots-carousel:hover .screenshots-track {
+            animation-play-state: paused;
+        }
+
+        .screenshot-slide {
+            flex: 0 0 auto;
+            width: 200px;
+            margin-right: 1rem;
+            border-radius: 15px;
+            overflow: hidden;
+            transition: transform 0.3s ease;
+        }
+
+        .screenshot-slide:hover {
+            transform: scale(1.05);
+        }
+
+        .screenshot-slide img {
+            width: 100%;
+            height: auto;
+            display: block;
+            border-radius: 15px;
+        }
+
+        @keyframes scroll {
+            0% {
+                transform: translateX(0);
+            }
+
+            100% {
+                transform: translateX(-50%);
+            }
         }
 
         .download-buttons {
@@ -224,6 +279,7 @@
             line-height: 1.7;
         }
 
+
         /* Perfect For Section */
         .perfect-for {
             padding: 80px 2rem;
@@ -271,7 +327,7 @@
             left: 0;
             right: 0;
             bottom: 0;
-            background: 
+            background:
                 radial-gradient(circle at 30% 30%, rgba(255, 107, 107, 0.1) 0%, transparent 50%),
                 radial-gradient(circle at 70% 70%, rgba(165, 42, 42, 0.1) 0%, transparent 50%);
             pointer-events: none;
@@ -322,6 +378,15 @@
                 justify-content: center;
             }
 
+            .screenshots-carousel {
+                max-width: 100%;
+                margin: 1.5rem auto 2rem;
+            }
+
+            .screenshot-slide {
+                width: 150px;
+            }
+
             .section-title {
                 font-size: 2.2rem;
             }
@@ -346,6 +411,7 @@
                 opacity: 0;
                 transform: translateY(30px);
             }
+
             to {
                 opacity: 1;
                 transform: translateY(0);
@@ -356,12 +422,58 @@
             animation: fadeInUp 0.6s ease forwards;
         }
 
-        .feature-card:nth-child(1) { animation-delay: 0.1s; }
-        .feature-card:nth-child(2) { animation-delay: 0.2s; }
-        .feature-card:nth-child(3) { animation-delay: 0.3s; }
-        .feature-card:nth-child(4) { animation-delay: 0.4s; }
-        .feature-card:nth-child(5) { animation-delay: 0.5s; }
-        .feature-card:nth-child(6) { animation-delay: 0.6s; }
+        .feature-card:nth-child(1) {
+            animation-delay: 0.1s;
+        }
+
+        .feature-card:nth-child(2) {
+            animation-delay: 0.2s;
+        }
+
+        .feature-card:nth-child(3) {
+            animation-delay: 0.3s;
+        }
+
+        .feature-card:nth-child(4) {
+            animation-delay: 0.4s;
+        }
+
+        .feature-card:nth-child(5) {
+            animation-delay: 0.5s;
+        }
+
+        .feature-card:nth-child(6) {
+            animation-delay: 0.6s;
+        }
+
+        .screenshot-item {
+            animation: fadeInUp 0.8s ease forwards;
+            opacity: 0;
+        }
+
+        .screenshot-item:nth-child(1) {
+            animation-delay: 0.1s;
+        }
+
+        .screenshot-item:nth-child(2) {
+            animation-delay: 0.2s;
+        }
+
+        .screenshot-item:nth-child(3) {
+            animation-delay: 0.3s;
+        }
+
+        .screenshot-item:nth-child(4) {
+            animation-delay: 0.4s;
+        }
+
+        .screenshot-item:nth-child(5) {
+            animation-delay: 0.5s;
+        }
+
+        .screenshot-item:nth-child(6) {
+            animation-delay: 0.6s;
+        }
 
         /* Floating elements */
         .floating-icon {
@@ -372,8 +484,15 @@
         }
 
         @keyframes float {
-            0%, 100% { transform: translateY(0px); }
-            50% { transform: translateY(-20px); }
+
+            0%,
+            100% {
+                transform: translateY(0px);
+            }
+
+            50% {
+                transform: translateY(-20px);
+            }
         }
 
         .floating-icon:nth-child(1) {
@@ -395,6 +514,7 @@
         }
     </style>
 </head>
+
 <body>
     <!-- Floating decorative elements -->
     <div class="floating-icon">🍷</div>
@@ -407,21 +527,59 @@
             <h1 class="logo">Fermolog</h1>
             <p class="tagline">Track wine & mead fermentation like a pro!</p>
             <p class="hero-description">
-                Smart OG/ABV calculator, timeline scheduling, and batch management. 
-                Perfect results every time! Take complete control of your fermentation process with the most comprehensive tracking app for home winemakers and mead producers.
+                Smart OG/ABV calculator, timeline scheduling, and batch management.
+                Perfect results every time! Take complete control of your fermentation process with the most
+                comprehensive tracking app for home winemakers and mead producers.
             </p>
-            
+
+            <!-- App Screenshots Carousel -->
+            <div class="screenshots-carousel">
+                <div class="screenshots-track">
+                    <div class="screenshot-slide">
+                        <img src="assets/img/IMG_0094.PNG" alt="Fermolog App Screenshot 1" loading="lazy">
+                    </div>
+                    <div class="screenshot-slide">
+                        <img src="assets/img/IMG_0095.PNG" alt="Fermolog App Screenshot 2" loading="lazy">
+                    </div>
+                    <div class="screenshot-slide">
+                        <img src="assets/img/IMG_0096.PNG" alt="Fermolog App Screenshot 3" loading="lazy">
+                    </div>
+                    <div class="screenshot-slide">
+                        <img src="assets/img/IMG_0097.PNG" alt="Fermolog App Screenshot 4" loading="lazy">
+                    </div>
+                    <div class="screenshot-slide">
+                        <img src="assets/img/IMG_0098.PNG" alt="Fermolog App Screenshot 5" loading="lazy">
+                    </div>
+                    <div class="screenshot-slide">
+                        <img src="assets/img/IMG_0099.PNG" alt="Fermolog App Screenshot 6" loading="lazy">
+                    </div>
+                    <!-- Duplicate for seamless loop -->
+                    <div class="screenshot-slide">
+                        <img src="assets/img/IMG_0094.PNG" alt="Fermolog App Screenshot 1" loading="lazy">
+                    </div>
+                    <div class="screenshot-slide">
+                        <img src="assets/img/IMG_0095.PNG" alt="Fermolog App Screenshot 2" loading="lazy">
+                    </div>
+                    <div class="screenshot-slide">
+                        <img src="assets/img/IMG_0096.PNG" alt="Fermolog App Screenshot 3" loading="lazy">
+                    </div>
+                </div>
+            </div>
+
             <div class="download-buttons">
                 <a href="https://apps.apple.com/tr/app/fermolog-brew-tracker/id6745624694" class="download-btn">
                     <svg viewBox="0 0 24 24" fill="currentColor">
-                        <path d="M18.71 19.5c-.83 1.24-1.71 2.45-3.05 2.47-1.34.03-1.77-.79-3.29-.79-1.53 0-2 .77-3.27.82-1.31.05-2.3-1.32-3.14-2.53C4.25 17 2.94 12.45 4.7 9.39c.87-1.52 2.43-2.48 4.12-2.51 1.28-.02 2.5.87 3.29.87.78 0 2.26-1.07 3.81-.91.65.03 2.47.26 3.64 1.98-.09.06-2.17 1.28-2.15 3.81.03 3.02 2.65 4.03 2.68 4.04-.03.07-.42 1.44-1.38 2.83M13 3.5c.73-.83 1.94-1.46 2.94-1.5.13 1.17-.34 2.35-1.04 3.19-.69.85-1.83 1.51-2.95 1.42-.15-1.15.41-2.35 1.05-3.11z"/>
+                        <path
+                            d="M18.71 19.5c-.83 1.24-1.71 2.45-3.05 2.47-1.34.03-1.77-.79-3.29-.79-1.53 0-2 .77-3.27.82-1.31.05-2.3-1.32-3.14-2.53C4.25 17 2.94 12.45 4.7 9.39c.87-1.52 2.43-2.48 4.12-2.51 1.28-.02 2.5.87 3.29.87.78 0 2.26-1.07 3.81-.91.65.03 2.47.26 3.64 1.98-.09.06-2.17 1.28-2.15 3.81.03 3.02 2.65 4.03 2.68 4.04-.03.07-.42 1.44-1.38 2.83M13 3.5c.73-.83 1.94-1.46 2.94-1.5.13 1.17-.34 2.35-1.04 3.19-.69.85-1.83 1.51-2.95 1.42-.15-1.15.41-2.35 1.05-3.11z" />
                     </svg>
                     App Store
                 </a>
-                
-                <a href="https://play.google.com/store/apps/details?id=com.eminbilgic.fermantation_logger" class="download-btn">
+
+                <a href="https://play.google.com/store/apps/details?id=com.eminbilgic.fermantation_logger"
+                    class="download-btn">
                     <svg viewBox="0 0 24 24" fill="currentColor">
-                        <path d="M3,20.5V3.5C3,2.91 3.34,2.39 3.84,2.15L13.69,12L3.84,21.85C3.34,21.6 3,21.09 3,20.5M16.81,15.12L6.05,21.34L14.54,12.85L16.81,15.12M20.16,10.81C20.5,11.08 20.75,11.5 20.75,12C20.75,12.5 20.53,12.9 20.18,13.18L17.89,14.5L15.39,12L17.89,9.5L20.16,10.81M6.05,2.66L16.81,8.88L14.54,11.15L6.05,2.66Z"/>
+                        <path
+                            d="M3,20.5V3.5C3,2.91 3.34,2.39 3.84,2.15L13.69,12L3.84,21.85C3.34,21.6 3,21.09 3,20.5M16.81,15.12L6.05,21.34L14.54,12.85L16.81,15.12M20.16,10.81C20.5,11.08 20.75,11.5 20.75,12C20.75,12.5 20.53,12.9 20.18,13.18L17.89,14.5L15.39,12L17.89,9.5L20.16,10.81M6.05,2.66L16.81,8.88L14.54,11.15L6.05,2.66Z" />
                     </svg>
                     Google Play
                 </a>
@@ -434,13 +592,14 @@
         <div class="container">
             <h2 class="section-title">Powerful Features</h2>
             <p class="section-subtitle">Everything you need for professional fermentation tracking</p>
-            
+
             <div class="features-grid">
                 <div class="feature-card">
                     <span class="feature-icon">📊</span>
                     <h3 class="feature-title">Advanced Batch Tracking</h3>
                     <p class="feature-description">
-                        Specialized batch records for wine, mead, and grape wines with detailed tracking of every fermentation stage and professional timeline management.
+                        Specialized batch records for wine, mead, and grape wines with detailed tracking of every
+                        fermentation stage and professional timeline management.
                     </p>
                 </div>
 
@@ -448,7 +607,8 @@
                     <span class="feature-icon">📝</span>
                     <h3 class="feature-title">Smart Recording System</h3>
                     <p class="feature-description">
-                        Time-stamped notes and photo logging with visual documentation of your fermentation process and automatic date and time records.
+                        Time-stamped notes and photo logging with visual documentation of your fermentation process and
+                        automatic date and time records.
                     </p>
                 </div>
 
@@ -456,7 +616,8 @@
                     <span class="feature-icon">🔔</span>
                     <h3 class="feature-title">Smart Alarms & Reminders</h3>
                     <p class="feature-description">
-                        Customizable alarms for critical fermentation steps, next process reminders, and batch transition time notifications.
+                        Customizable alarms for critical fermentation steps, next process reminders, and batch
+                        transition time notifications.
                     </p>
                 </div>
 
@@ -464,7 +625,8 @@
                     <span class="feature-icon">🧮</span>
                     <h3 class="feature-title">Professional Calculations</h3>
                     <p class="feature-description">
-                        Automatic OG/Brix value calculation with accurate measurements without hydrometer using content-based intelligent algorithms.
+                        Automatic OG/Brix value calculation with accurate measurements without hydrometer using
+                        content-based intelligent algorithms.
                     </p>
                 </div>
 
@@ -472,7 +634,8 @@
                     <span class="feature-icon">🍷</span>
                     <h3 class="feature-title">ABV Calculation</h3>
                     <p class="feature-description">
-                        Automatic ABV calculation from OG/Brix values, potential alcohol percentage estimation, and fermentation progress tracking.
+                        Automatic ABV calculation from OG/Brix values, potential alcohol percentage estimation, and
+                        fermentation progress tracking.
                     </p>
                 </div>
 
@@ -480,12 +643,14 @@
                     <span class="feature-icon">📈</span>
                     <h3 class="feature-title">Visual Analysis</h3>
                     <p class="feature-description">
-                        Automatic graphical display of OG readings, visual fermentation process tracking, and alcohol development progression charts.
+                        Automatic graphical display of OG readings, visual fermentation process tracking, and alcohol
+                        development progression charts.
                     </p>
                 </div>
             </div>
         </div>
     </section>
+
 
     <!-- Perfect For Section -->
     <section class="perfect-for">
@@ -521,14 +686,17 @@
                 <div class="download-buttons">
                     <a href="https://apps.apple.com/tr/app/fermolog-brew-tracker/id6745624694" class="download-btn">
                         <svg viewBox="0 0 24 24" fill="currentColor">
-                            <path d="M18.71 19.5c-.83 1.24-1.71 2.45-3.05 2.47-1.34.03-1.77-.79-3.29-.79-1.53 0-2 .77-3.27.82-1.31.05-2.3-1.32-3.14-2.53C4.25 17 2.94 12.45 4.7 9.39c.87-1.52 2.43-2.48 4.12-2.51 1.28-.02 2.5.87 3.29.87.78 0 2.26-1.07 3.81-.91.65.03 2.47.26 3.64 1.98-.09.06-2.17 1.28-2.15 3.81.03 3.02 2.65 4.03 2.68 4.04-.03.07-.42 1.44-1.38 2.83M13 3.5c.73-.83 1.94-1.46 2.94-1.5.13 1.17-.34 2.35-1.04 3.19-.69.85-1.83 1.51-2.95 1.42-.15-1.15.41-2.35 1.05-3.11z"/>
+                            <path
+                                d="M18.71 19.5c-.83 1.24-1.71 2.45-3.05 2.47-1.34.03-1.77-.79-3.29-.79-1.53 0-2 .77-3.27.82-1.31.05-2.3-1.32-3.14-2.53C4.25 17 2.94 12.45 4.7 9.39c.87-1.52 2.43-2.48 4.12-2.51 1.28-.02 2.5.87 3.29.87.78 0 2.26-1.07 3.81-.91.65.03 2.47.26 3.64 1.98-.09.06-2.17 1.28-2.15 3.81.03 3.02 2.65 4.03 2.68 4.04-.03.07-.42 1.44-1.38 2.83M13 3.5c.73-.83 1.94-1.46 2.94-1.5.13 1.17-.34 2.35-1.04 3.19-.69.85-1.83 1.51-2.95 1.42-.15-1.15.41-2.35 1.05-3.11z" />
                         </svg>
                         Download for iOS
                     </a>
-                    
-                    <a href="https://play.google.com/store/apps/details?id=com.eminbilgic.fermantation_logger" class="download-btn">
+
+                    <a href="https://play.google.com/store/apps/details?id=com.eminbilgic.fermantation_logger"
+                        class="download-btn">
                         <svg viewBox="0 0 24 24" fill="currentColor">
-                            <path d="M3,20.5V3.5C3,2.91 3.34,2.39 3.84,2.15L13.69,12L3.84,21.85C3.34,21.6 3,21.09 3,20.5M16.81,15.12L6.05,21.34L14.54,12.85L16.81,15.12M20.16,10.81C20.5,11.08 20.75,11.5 20.75,12C20.75,12.5 20.53,12.9 20.18,13.18L17.89,14.5L15.39,12L17.89,9.5L20.16,10.81M6.05,2.66L16.81,8.88L14.54,11.15L6.05,2.66Z"/>
+                            <path
+                                d="M3,20.5V3.5C3,2.91 3.34,2.39 3.84,2.15L13.69,12L3.84,21.85C3.34,21.6 3,21.09 3,20.5M16.81,15.12L6.05,21.34L14.54,12.85L16.81,15.12M20.16,10.81C20.5,11.08 20.75,11.5 20.75,12C20.75,12.5 20.53,12.9 20.18,13.18L17.89,14.5L15.39,12L17.89,9.5L20.16,10.81M6.05,2.66L16.81,8.88L14.54,11.15L6.05,2.66Z" />
                         </svg>
                         Download for Android
                     </a>
@@ -537,4 +705,5 @@
         </div>
     </section>
 </body>
+
 </html>
